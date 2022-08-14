@@ -1,31 +1,89 @@
-import { useContext } from 'react';
+import { useState, useEffect } from 'react';
+import { useColorScheme } from '@mui/joy/styles';
+import Box from '@mui/joy/Box';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { styled } from '@mui/joy/styles';
+import Button from '@mui/joy/Button';
+import MenuList from '@mui/joy/MenuList';
+import MenuItem from '@mui/joy/MenuItem';
 
-import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
+import { Themes } from 'src/themes';
 
-import IconButton from '@mui/material/IconButton';
+const Popup = styled(PopperUnstyled)({
+    zIndex: 1000,
+});
 
-import { ThemeContext, getThemeFromString } from 'src/themes';
+const SelectTheme = () => {
+    const {mode, setMode } = useColorScheme();
+    const [mounted, setMounted] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
 
-const NavBar = () => {
-    const {selectedThemeString, setSelectedThemeString} = useContext(ThemeContext);
-    const selectedTheme = getThemeFromString(selectedThemeString);
+    useEffect(() => {
+        setMounted(true);
+    }, [])
 
-    const toggleTheme = (event) => {
-        setSelectedThemeString(selectedTheme.nextUp);
+    if (!mounted)
+        return null;
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    
+    const handleChange = (event) => {
+        setAnchorEl(null);
+
+        const option = event.currentTarget.textContent.toLowerCase();
+
+        if (option in Themes) 
+            setMode(option);
+        else
+            setMode('light');
     };
 
     return (
-        <AppBar position="sticky">
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <IconButton onClick={toggleTheme}>
-                        {selectedTheme.icon}
-                    </IconButton>
-                </Toolbar>
-            </Container>
-        </AppBar>
+        <div>
+            <Button
+                onClick={handleClick}
+                sx={{ borderRadius: 0 }}
+            >
+                Theme
+            </Button>
+            <Popup
+                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}
+                disablePortal
+                modifiers={[
+                    {
+                        name: 'offset',
+                        options: {
+                            offset: [0, 4],
+                        },
+                    },
+                ]}
+            >
+                <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
+                    <MenuList
+                        variant="outlined"
+                        sx={{ boxShadow: 'md', bgcolor: 'background.body' }}
+                    >
+                        {Object.keys(Themes).map((themeName, index) => 
+                            <MenuItem key={`themeoption-${index}`} onClick={handleChange}>
+                                {themeName}
+                            </MenuItem>
+                        )}
+                    </MenuList>
+                </ClickAwayListener>
+            </Popup>
+        </div>
+    );
+};
+
+const NavBar = () => {
+    return (
+        <Box>
+            <SelectTheme />
+        </Box>
     );
 };
 

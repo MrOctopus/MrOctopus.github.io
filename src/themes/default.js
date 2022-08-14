@@ -1,12 +1,8 @@
-import LightModeIcon from '@mui/icons-material/LightMode';
-
 const defaultTheme = {
-    icon: <LightModeIcon color="secondary"/>,
-    mui: {
-        palette: {
+    palette: {
+        primary: {
         },
     },
-    nextUp: 'dark',
 };
 
 export default defaultTheme;

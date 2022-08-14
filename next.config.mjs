@@ -8,8 +8,8 @@ const nextConfig = {
   distDir: 'build',
   experimental: {
     modularizeImports: {
-      "@mui/material": {
-        transform: "@mui/material/{{member}}",
+      "@mui/joy": {
+        transform: "@mui/joy/{{member}}",
       },
       "@mui/icons-material": {
         transform: "@mui/icons-material/{{member}}",
