@@ -20,7 +20,8 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "eslint": "8.21.0",
-    "eslint-config-next": "12.2.5"
+    "eslint": "^8.22.0",
+    "eslint-config-next": "12.2.5",
+    "yarn-check": "^0.0.3"
   }
 }
