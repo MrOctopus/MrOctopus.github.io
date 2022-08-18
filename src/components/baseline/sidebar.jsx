@@ -53,9 +53,9 @@ const SideBar = ({sidebarState}) => {
                             textColor="neutral.500"
                             fontWeight={700}
                             sx={{
-                            fontSize: '10px',
-                            textTransform: 'uppercase',
-                            letterSpacing: '.1rem',
+                                fontSize: '10px',
+                                textTransform: 'uppercase',
+                                letterSpacing: '.1rem',
                             }}
                         >
                             Themes
@@ -66,11 +66,11 @@ const SideBar = ({sidebarState}) => {
                             }}
                         >
                             {Object.keys(Themes).map((themeName, index) => 
-                            <ListItem key={`themeoption-${index}`}>
-                                <ListItemButton onClick={handleChange}>
-                                    {themeName}
-                                </ListItemButton>
-                            </ListItem>
+                                <ListItem key={`themeoption-${index}`}>
+                                    <ListItemButton onClick={handleChange}>
+                                        {themeName}
+                                    </ListItemButton>
+                                </ListItem>
                             )}
                         </List>
                     </ListItem>

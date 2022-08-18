@@ -46,8 +46,8 @@ const Base = (props) => {
                 },
                 ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
             ]}
-    />
-  );
+        />
+    );
 };
 
 const NavBar = ({ sidebarState }) => {    
@@ -73,6 +73,7 @@ const NavBar = ({ sidebarState }) => {
                     }}
                 >
                     <Image 
+                        alt="Logo"
                         src={Logo}
                     />
                 </AspectRatio>
