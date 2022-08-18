@@ -7,9 +7,15 @@ const nextConfig = {
 
   distDir: 'build',
   experimental: {
+    images: {
+      allowFutureImage: true,
+    },
     modularizeImports: {
       "@mui/joy": {
         transform: "@mui/joy/{{member}}",
+      },
+      "@mui/material": {
+        transform: "@mui/material/{{member}}",
       },
       "@mui/icons-material": {
         transform: "@mui/icons-material/{{member}}",

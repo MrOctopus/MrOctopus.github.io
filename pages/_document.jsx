@@ -7,7 +7,9 @@ const Document = () => {
             <Head>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <body>
+            <body 
+                style={{ margin: 0 }}
+            >
                 {getInitColorSchemeScript()}
                 <Main />
                 <NextScript />
