@@ -4,6 +4,8 @@ import AspectRatio from '@mui/joy/AspectRatio';
 
 import Image from 'next/future/image' ;
 import MenuSharpIcon from '@mui/icons-material/MenuSharp';
+import Breadcrumbs from '@mui/joy/Breadcrumbs';
+
 import Logo from 'public/images/octopus.png';
 
 const MenuButton = ({sidebarState}) => {
@@ -17,42 +19,31 @@ const MenuButton = ({sidebarState}) => {
         <IconButton
             variant="soft"
             onClick={handleClick}
-            sx={{ borderRadius: 0 }}
         >
             <MenuSharpIcon/>
         </IconButton>
     );
 };
 
-const Base = (props) => {
-    return (
-        <Box
-            {...props}
-            sx={[
-                {
-                    p: 2,
-                    gap: 2,
-                    bgcolor: 'background.componentBg',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    gridColumn: '1 / -1',
-                    borderBottom: '1px solid',
-                    borderColor: 'divider',
-                    position: 'sticky',
-                    top: 0,
-                    zIndex: 1100,
-                },
-                ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
-            ]}
-        />
-    );
-};
-
 const NavBar = ({ sidebarState }) => {    
     return (
-        <Base>
+        <Box
+            sx={{
+                p: 2,
+                gap: 2,
+                bgcolor: 'background.componentBg',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                gridColumn: '1 / -1',
+                borderBottom: '1px solid',
+                borderColor: 'divider',
+                position: 'sticky',
+                top: 0,
+                zIndex: 1100,
+            }}
+        >
             <Box
                 sx={{
                     display: 'flex',
@@ -62,21 +53,26 @@ const NavBar = ({ sidebarState }) => {
                     gap: 1.5,
                 }}
             >
-                <AspectRatio 
-                    ratio="1" 
-                    sx={{ 
-                        minWidth: 50,
-                        userSelect: 'none',
-                        '& > div': {
-                            backgroundColor: 'transparent',
-                        },
-                    }}
+                <Box
+                    display="flex"
                 >
-                    <Image 
-                        alt="Logo"
-                        src={Logo}
-                    />
-                </AspectRatio>
+                    <AspectRatio 
+                        ratio="1" 
+                        sx={{ 
+                            minWidth: 50,
+                            userSelect: 'none',
+                            '& > div': {
+                                backgroundColor: 'transparent',
+                            },
+                        }}
+                    >
+                        <Image 
+                            alt="Logo"
+                            src={Logo}
+                        />
+                    </AspectRatio>
+                    <Breadcrumbs />
+                </Box>
                 <Box sx={{ margin: 'auto' }} />
                 <Box 
                     sx={{ 
@@ -88,7 +84,7 @@ const NavBar = ({ sidebarState }) => {
                     <MenuButton sidebarState={sidebarState} />
                 </Box>
             </Box>
-        </Base>
+        </Box>
     );
 };
 

@@ -1,6 +1,8 @@
 const darkTheme = {
     palette: {
-        primary: {
+        background: {
+            appBody: 'var(--joy-palette-common-black)',
+            componentBg: 'var(--joy-palette-neutral-900)',
         },
     },
 };

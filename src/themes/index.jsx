@@ -1,3 +1,4 @@
+import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 import defaultTheme from './default'
@@ -10,9 +11,17 @@ export const Themes = {
 
 export const ThemeProvider = ({ children }) => {
     return (
-        <CssVarsProvider theme={extendTheme({
+        <CssVarsProvider disableTransitionOnChange theme={extendTheme({
             colorSchemes: Themes
         })}>
+            <GlobalStyles
+                styles={(theme) => ({
+                    body: {
+                        margin: 0,
+                        fontFamily: theme.vars.fontFamily.body,
+                    },
+                })}
+            />
             {children}
         </CssVarsProvider>
     );

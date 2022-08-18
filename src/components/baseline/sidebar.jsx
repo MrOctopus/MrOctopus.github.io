@@ -2,6 +2,7 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
 import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import ListDivider from '@mui/joy/ListDivider';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 
@@ -9,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { useColorScheme } from '@mui/joy/styles';
 
 import { Themes } from 'src/themes';
+import { capitalize } from 'src/utils';
 
 const SideBar = ({sidebarState}) => {
     const [showSidebar, setShowSidebar] = sidebarState;
@@ -36,7 +38,6 @@ const SideBar = ({sidebarState}) => {
     return (
         <ClickAwayListener onClickAway={() => {
             setShowSidebar(false);
-            console.log("RAN!");
         }}>
             <Box
                 sx={{
@@ -45,9 +46,12 @@ const SideBar = ({sidebarState}) => {
                     bgcolor: 'background.componentBg',
                     borderLeft: '1px solid',
                     borderColor: 'divider',
+                    transitionProperty: 'width',
                 }}
             >
-                <List size="sm" sx={{ '--List-item-radius': '8px' }}>
+                <List size="sm" sx={{
+                    '--List-item-radius': '8px'
+                }}>
                     <ListItem nested sx={{ p: 0 }}>
                         <Typography
                             textColor="neutral.500"
@@ -62,18 +66,22 @@ const SideBar = ({sidebarState}) => {
                         </Typography>
                         <List 
                             sx={{
-                                '& .JoyListItemButton-root': { p: '8px' },
+                                '& .JoyListItemButton-root': { 
+                                    p: '8px',
+                                    margin: '0'
+                                },
                             }}
                         >
                             {Object.keys(Themes).map((themeName, index) => 
                                 <ListItem key={`themeoption-${index}`}>
-                                    <ListItemButton onClick={handleChange}>
-                                        {themeName}
+                                    <ListItemButton variant="soft" onClick={handleChange}>
+                                        {capitalize(themeName)}
                                     </ListItemButton>
                                 </ListItem>
                             )}
                         </List>
                     </ListItem>
+                    <ListDivider inset="gutter" />
                 </List>
             </Box>
         </ClickAwayListener>
