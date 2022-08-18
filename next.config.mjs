@@ -6,8 +6,10 @@ const nextConfig = {
   swcMinify: true,
 
   distDir: 'build',
+
   experimental: {
     images: {
+      unoptimized: true,
       allowFutureImage: true,
     },
     modularizeImports: {
